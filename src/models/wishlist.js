@@ -32,8 +32,29 @@ const deleteWishlist =(id,callback) =>{
   });
 };
 
+const getAwhislist = (id, callback) =>{
+  db.query('SELECT  `customerId`, `productId` FROM `wishlist` WHERE `id`=?',[id],(err,res)=>{
+    if(err){
+      callback(err,null);
+    }else{
+      callback(null,res);
+    }
+  });
+};
+
+const getAllWishlist =(callback)=>{
+  db.query('SELECT * FROM `wishlist`',(err,res)=>{
+    if(err){
+      callback(err,null);
+    }else{
+      callback(null,res);
+    }
+  });
+}
 
 module.exports = {
   createWishlist,
-  deleteWishlist
+  deleteWishlist,
+  getAwhislist,
+  getAllWishlist
 };
